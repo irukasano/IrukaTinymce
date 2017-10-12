@@ -1,21 +1,21 @@
 IrukaTinymce - Tinymce4 for cakephp2 plugin with file upload
 =
 
-����� Tinymce4 �Ƀt�@�C���i�摜�j�A�b�v���[�h�@�\����ǉ��������̂��ACakephp2 �p plugin �ɂ������̂ł��B
+これは Tinymce4 にファイル（画像）アップロード機能等を追加したものを、Cakephp2 用 plugin にしたものです。
 
-�Ώ�
+対象
 -
 
 Cakephp2
 
 
-����
+特徴
 -
 
-* Tinymce4�A����шȉ���Tinymce plugin �ꎮ�� Cakephp2 �p plugin �Ƃ��Ă܂Ƃ߂Ă���܂��B
+* Tinymce4、および以下のTinymce plugin 一式を Cakephp2 用 plugin としてまとめてあります。
 * Tinymce Smileys plugin(http://www.tinymce.com/download/plugins_view.php?id=31)
-* �X�}�C���[�̉摜�� http://zaazu.com/ ���
-* Justboil.me Tinymce image upload plugin(https://github.com/vikdiesel/justboil.me) �� Cakephp2 �p plugin �ɏ�������
+* スマイリーの画像は http://zaazu.com/ より
+* Justboil.me Tinymce image upload plugin(https://github.com/vikdiesel/justboil.me) を Cakephp2 用 plugin に書き換え
 
 Demo
 -
@@ -26,9 +26,9 @@ Demo
 Install and Setup
 -
 
-* ���|�W�g���� `rootdir/plugins/IrukaTinymce` �܂��� `rootdir/app/Plugin/IrukaTinymce` �f�B���N�g���ɃN���[���A�܂��̓_�E�����[�h����ZIP�t�@�C�����𓀂��܂��B
+* リポジトリを `rootdir/plugins/IrukaTinymce` または `rootdir/app/Plugin/IrukaTinymce` ディレクトリにクローン、またはダウンロードしたZIPファイルを解凍します。
 
-* Plugin��ǂݍ��݂܂��B
+* Pluginを読み込みます。
 
 		//`app/Config/bootstrap.php`
 		
@@ -37,7 +37,7 @@ Install and Setup
 		    'IrukaTinymce',
 		));
 
-* IrukaTinymce �p�̐ݒ�����`���܂�
+* IrukaTinymce 用の設定情報を定義します
 
 		//`app/Config/iruka_tinymce.php`
 		
@@ -45,33 +45,33 @@ Install and Setup
 		    "iruka_tinymce_setting" => array(
 		        "picture" => array(
 		            
-		            // �t�@�C���A�b�v���[�h�̕����t�@�C���ۑ��p�f�B���N�g��
+		            // ファイルアップロードの物理ファイル保存用ディレクトリ
 		            "savedir" => dirname(__FILE__).DS."..".DS."..".DS."files".DS."Images",
 		            
-		            // �摜�Ȃ��̏ꍇ�̉摜�����p�X
+		            // 画像なしの場合の画像物理パス
 		            "user_no_image" => dirname(__FILE__).DS."..".DS."webroot".DS."img".DS."pic_noimage.jpg",
 		            
-		            // �ő�A�b�v���[�h�t�@�C���T�C�Y
+		            // 最大アップロードファイルサイズ
 		            "max_file_size" => 2*1024*1024,
 		            
-		            // ���摜�^�C�v
+		            // 許可画像タイプ
 		            "allow_upload_type" => array(
 		                "gif", "jpg", "jpeg", "png",
 		            ),
 		            
-		            // �摜�������T�C�Y
+		            // 画像自動リサイズ
 		            "auto_resize" => true,
 		            
-		            // �������T�C�Y���̍ő�摜��
+		            // 自動リサイズ時の最大画像幅
 		            "max_width" => 300,
 		            
-		            // �������T�C�Y���̍ő�摜����
+		            // 自動リサイズ時の最大画像高さ
 		            "max_height" => 300,
 		        ),
 		    ),
 		);
 
-* IrukaTinymce �p�̐ݒ����ǂݍ��݂܂�
+* IrukaTinymce 用の設定情報を読み込みます
 
 		//`app/Controller/AppController.php`
 		
@@ -81,12 +81,12 @@ Install and Setup
 		      :
 		}
 
-* Linux �̏ꍇ�Awebroot �f�B���N�g���� IrukaTinymce �ւ̃V���{���b�N�����N���͂�܂�
+* Linux の場合、webroot ディレクトリに IrukaTinymce へのシンボリックリンクをはります
 
 		cd app/webroot
 		ln -s rootdir/plugins/IrukaTinymce/webroot iruka_tinymce
 
-* Tinymce ��g�ݍ��݂�����ʂŁA�ȉ��̃R�[�h��}�����܂��B
+* Tinymce を組み込みたい画面で、以下のコードを挿入します。
 
 		if ( CakePlugin::loaded('IrukaTinymce') ) {
 		    $this->Html->script('/iruka_tinymce/js/tinymce/tinymce.min.js', array('inline' => false));
@@ -117,8 +117,8 @@ Install and Setup
 Licence
 -
 
-���̃��W���[���� MIT �̌��Ɍ��J���܂��B
-�ڂ����� LICENSE �t�@�C�����Q�Ƃ��������B
+このモジュールは MIT の元に公開します。
+詳しくは LICENSE ファイルを参照ください。
 
 Author
 -
